@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1616957791 source:c:\users\alexander hug\documents\codeblocks\fahrzeuge\main.cpp
+	<iostream>
+	<vehicle.h>
+
+1616958099 c:\users\alexander hug\documents\codeblocks\fahrzeuge\include\vehicle.h
+	<string>
+
+1616958188 source:c:\users\alexander hug\documents\codeblocks\fahrzeuge\src\vehicle.cpp
+	"vehicle.h"
+

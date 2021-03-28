@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1616965231 source:c:\users\alexander hug\documents\codeblocks\quadrate\main.cpp
+	<iostream>
+	<square.h>
+
+1616959185 c:\users\alexander hug\documents\codeblocks\quadrate\include\complex.h
+
+1616966912 source:c:\users\alexander hug\documents\codeblocks\quadrate\src\square.cpp
+	"square.h"
+
+1616966922 c:\users\alexander hug\documents\codeblocks\quadrate\include\square.h
+

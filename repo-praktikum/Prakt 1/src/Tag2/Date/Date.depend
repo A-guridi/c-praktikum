@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1616953481 source:c:\users\alexander hug\documents\codeblocks\date\main.cpp
+	<iostream>
+	<Date.h>
+	<ctime>
+
+1616953303 source:c:\users\alexander hug\documents\codeblocks\date\src\date.cpp
+	<Date.h>
+	<cstdlib>
+
+1616952945 c:\users\alexander hug\documents\codeblocks\date\include\date.h
+

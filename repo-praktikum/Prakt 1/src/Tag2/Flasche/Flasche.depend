@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1616938631 source:c:\users\alexander hug\documents\codeblocks\flasche\src\flasche.cpp
+	"Flasche.h"
+	<iostream>
+	<string>
+
+1616938631 c:\users\alexander hug\documents\codeblocks\flasche\include\flasche.h
+	<string>
+
+1616938674 source:c:\users\alexander hug\documents\codeblocks\flasche\main.cpp
+	<iostream>
+	<string>
+	<Flasche.h>
+	<InputRoutine.h>
+
+1616934941 source:c:\users\alexander hug\documents\codeblocks\flasche\src\inputroutine.cpp
+	"InputRoutine.h"
+	<iostream>
+
+1616932890 c:\users\alexander hug\documents\codeblocks\flasche\include\inputroutine.h
+	<string>
+

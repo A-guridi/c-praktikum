@@ -3,7 +3,7 @@
 
 
 
-Student::Student() : Person(std::string sName, std::string sSurname, int iAge)
+Student::Student(unsigned int uiStudentID) : Person(std::string sName, std::string sSurname, int iAge)
 {
 
 }

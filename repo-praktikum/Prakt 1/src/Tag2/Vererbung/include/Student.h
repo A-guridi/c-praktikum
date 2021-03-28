@@ -7,7 +7,7 @@
 class Student : public Person
 {
     public:
-        Student(unsigned int uiStudentID, std::string sName, std::string sSurname, int iAge);
+        Student(unsigned int uiStudentID);
         virtual ~Student();
 
     protected:

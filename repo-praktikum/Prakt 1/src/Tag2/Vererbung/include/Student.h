@@ -7,8 +7,10 @@
 class Student : public Person
 {
     public:
-        Student(unsigned int uiStudentID);
+        Student(std::string sName, std::string sSurname, int iAge, unsigned int uiStudentID);
         virtual ~Student();
+        std::string getName();
+        unsigned int getID();
 
     protected:
 

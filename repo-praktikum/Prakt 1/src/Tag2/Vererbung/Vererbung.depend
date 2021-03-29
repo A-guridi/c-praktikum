@@ -1,19 +1,21 @@
 # depslib dependency file v1.0
-1616967837 source:c:\users\alexander hug\documents\codeblocks\vererbung\main.cpp
+1617018363 source:c:\users\alexander hug\documents\codeblocks\vererbung\main.cpp
 	<iostream>
+	<Person.h>
+	<Student.h>
 
-1616973370 source:c:\users\alexander hug\documents\codeblocks\vererbung\src\person.cpp
+1617011779 source:c:\users\alexander hug\documents\codeblocks\vererbung\src\person.cpp
 	"Person.h"
 	<string>
 
-1616973370 c:\users\alexander hug\documents\codeblocks\vererbung\include\person.h
+1617011788 c:\users\alexander hug\documents\codeblocks\vererbung\include\person.h
 	<string>
 
-1616973659 source:c:\users\alexander hug\documents\codeblocks\vererbung\src\student.cpp
+1617019487 source:c:\users\alexander hug\documents\codeblocks\vererbung\src\student.cpp
 	"Student.h"
 	<string.h>
 
-1616973796 c:\users\alexander hug\documents\codeblocks\vererbung\include\student.h
+1617019456 c:\users\alexander hug\documents\codeblocks\vererbung\include\student.h
 	<Person.h>
 	<string.h>
 

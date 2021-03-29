@@ -2,11 +2,9 @@
 #include<string>
 
 //constructor
-Person::Person(std::string sName, std::string sSurname, int iAge)
+Person::Person(std::string sName, std::string sSurname, int iAge) :  m_sName(sName), m_sSurname(sSurname), m_iAge(iAge)
 {
-    //Person::m_sName=sName;
-    //Person::m_sSurname=sSurname;
-    //Person::m_iAge=iAge;
+
 }
 
 //deconstructor

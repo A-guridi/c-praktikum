@@ -68,6 +68,10 @@ int rechner(){
 	char oper=readop();
 	cout<<"Schreiben Sie die zweite Nummer: "<<endl;
 	double num2=readnum();
+	while(num2==0 && oper=='/'){
+		cout<<"Division unter 0 unmöglich, schreiben sie eine andere Nummer wieder"<<endl;
+		num2=readnum();
+	}
 	double result=calculate(num1, num2, oper);
 	cout<<"Ergebniss: "<<result<<endl;
 	return 0;

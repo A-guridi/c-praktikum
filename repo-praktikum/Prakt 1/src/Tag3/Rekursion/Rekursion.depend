@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1617108411 source:c:\users\alexander hug\documents\codeblocks\rekursion\main.cpp
+	<iostream>
+	<calculations.h>
+
+1617109190 source:c:\users\alexander hug\documents\codeblocks\rekursion\src\calculations.cpp
+	"calculations.h"
+	<iostream>
+
+1617108510 c:\users\alexander hug\documents\codeblocks\rekursion\include\calculations.h
+

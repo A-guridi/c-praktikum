@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1617194329 source:c:\users\alexander hug\documents\codeblocks\datei\main.cpp
+	<iostream>
+	<readwrite.h>
+
+1617194436 source:c:\users\alexander hug\documents\codeblocks\datei\src\readwrite.cpp
+	"readwrite.h"
+	<iostream>
+	<fstream>
+	<string>
+	<unistd.h>
+
+1617194329 c:\users\alexander hug\documents\codeblocks\datei\include\readwrite.h
+	<string>
+

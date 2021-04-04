@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1617473742 source:c:\users\alexander hug\documents\codeblocks\ausnahmen\main.cpp
+	<iostream>
+	<fstream>
+	<exception>
+

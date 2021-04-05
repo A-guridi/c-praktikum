@@ -1,15 +1,14 @@
 # depslib dependency file v1.0
-1617194329 source:c:\users\alexander hug\documents\codeblocks\datei\main.cpp
+1617662228 source:c:\users\dominik\documents\0000-alex\c-praktikum-main\repo-praktikum\prakt 1\src\tag3\datei\main.cpp
 	<iostream>
 	<readwrite.h>
-
-1617194436 source:c:\users\alexander hug\documents\codeblocks\datei\src\readwrite.cpp
-	"readwrite.h"
-	<iostream>
-	<fstream>
 	<string>
-	<unistd.h>
 
-1617194329 c:\users\alexander hug\documents\codeblocks\datei\include\readwrite.h
+1617661833 source:c:\users\dominik\documents\0000-alex\c-praktikum-main\repo-praktikum\prakt 1\src\tag3\datei\src\readwrite.cpp
+	"readwrite.h"
+	<fstream>
+	<iostream>
+
+1617660067 c:\users\dominik\documents\0000-alex\c-praktikum-main\repo-praktikum\prakt 1\src\tag3\datei\include\readwrite.h
 	<string>
 

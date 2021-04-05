@@ -37,16 +37,15 @@ void delcoords(std::list<coord>& mylist)
 
     while(myiterator != mylist.end())
     {
-        if((myiterator->m_fX)<(myiterator->m_fY))
+        if((myiterator->m_fX)<(myiterator->m_fY))  //if condition==true, delete element and set iterator to next element
         {
             myiterator=mylist.erase(myiterator);
         }
-        else
+        else                    //if condition==false, set iterator to next element
         {
             myiterator++;
         }
     }
-
 }
 
 int main()

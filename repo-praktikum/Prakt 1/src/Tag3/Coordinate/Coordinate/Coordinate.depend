@@ -1,4 +1,7 @@
 # depslib dependency file v1.0
-1617624551 source:c:\users\dominik\documents\0000-alex\c-praktikum-main\repo-praktikum\prakt 1\src\tag3\coordinate\coordinate\main.cpp
+1617633052 source:c:\users\dominik\documents\0000-alex\c-praktikum-main\repo-praktikum\prakt 1\src\tag3\coordinate\coordinate\main.cpp
 	<iostream>
+	<cstdlib>
+	<ctime>
+	<list>
 

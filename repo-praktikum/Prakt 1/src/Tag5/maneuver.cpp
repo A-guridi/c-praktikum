@@ -95,9 +95,7 @@ void Maneuver::Proceed(){
 void Maneuver::CalcManeuverSpeed(double x, double y, double w){
 	double xsoll=iter->dX;
 	double ysoll=iter->dY;
-	double isPos=sqrt(x*x+y*y);
-	double sollPos=sqrt(xsoll*xsoll + ysoll*ysoll);
-	dPosDifference=abs(sollPos-isPos);
+	dPosDifference=sqrt((xsoll-x)*(xsoll-x)+(ysoll-y)*(ysoll-y))
 	if (dPosDifference>0.02){
 		if(iter==CoordList.end()){
 			adWishSpeed[0]=0;

@@ -40,7 +40,7 @@ int pidchecker() {
 	return 0;
 }
 int main(){
-	KeyboardControl *mykey=new KeyboardControl();
-	mykey->Communicate(mykey->wspeed);
+	KeyboardControl mykey=KeyboardControl();
+	mykey.Communicate();
 	return 0;
 }

@@ -15,24 +15,22 @@ public:
 	KeyboardControl();
 	~KeyboardControl();
 	void Step();
-	void Communicate(double* speed);
+	void Communicate();
 	static KeyboardControl * transferPointer;
 	static void transferFunction();
 	double in=0.0;
-	double* wspeed=&in;
+	double wspeed[2];
 
 private:
-
 	double s=0.0;
 	int r=1500;
 	double *isspeed=&s;
-
 	int* shspeed=&r;
 	//double* inspeed;
 	void adjustspeed(double *speed, char q);
-	InterfaceSIM* myinter;
-	PIDController rcon;	//right controller
-	PIDController lcon; //left controller
+	InterfaceSIM myinter;
+	PIDController rcon=PIDController(500.0, 185.0, 0.0, 0.04);;	//right controller
+	PIDController lcon=PIDController(500.0, 185.0, 0.0, 0.04);; //left controller
 
 };
 

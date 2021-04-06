@@ -13,17 +13,17 @@ using namespace std;
 KeyboardControl* KeyboardControl::transferPointer;
 
 KeyboardControl::KeyboardControl(){
-	KeyboardControl::rcon=PIDController(500.0, 185.0, 0.0, 0.04);
-	KeyboardControl::lcon=PIDController(500.0, 185.0, 0.0, 0.04);
+
 	for(int i=0;i<2;i++){
 	//KeyboardControl::inspeed[i]=0.0;
 
-	//KeyboardControl::wspeed=&in;
+	KeyboardControl::wspeed[i]=0;
 	//KeyboardControl::shspeed=&r;
 	}
-	KeyboardControl::myinter=new InterfaceSIM();
-	KeyboardControl::myinter->Initialize(0.04, & transferPointer->transferFunction); //is this transferFunction ??
+	KeyboardControl::myinter=InterfaceSIM();
 	transferPointer=this;
+	KeyboardControl::myinter.Initialize(0.04, (*transferFunction)); //& transferPointer->transferFunction); //is this transferFunction ??
+
 }
 
 KeyboardControl::~KeyboardControl(){
@@ -66,53 +66,52 @@ void KeyboardControl::adjustspeed(double *speed, char q){
 
 }
 
-void KeyboardControl::Communicate(double* speed){
-	sigprocmask(SIG_UNBLOCK, & KeyboardControl::myinter->mask, nullptr);
+void KeyboardControl::Communicate(){
+
 	initscr();
 	nodelay(stdscr,TRUE);
 	noecho();
+	sigprocmask(SIG_UNBLOCK, & KeyboardControl::myinter.mask, nullptr);
 	char chValue;
 	while(chValue!='q'){
 		chValue=getch();
 		if(chValue!='q'&& chValue!=-1){
 			clear();
-			KeyboardControl::adjustspeed(speed, chValue);
-			if(speed[0]>0.5){
-				speed[0]=0.5;
+			KeyboardControl::adjustspeed(wspeed, chValue);
+			if(wspeed[0]>0.5){
+				wspeed[0]=0.5;
 			}
-			if(speed[1]>0.5){
-				speed[1]=0.5;
+			if(wspeed[1]>0.5){
+				wspeed[1]=0.5;
 			}
-			if(speed[0]<-0.5){
-				speed[0]=-0.5;
+			if(wspeed[0]<-0.5){
+				wspeed[0]=-0.5;
 			}
-			if(speed[1]<-0.5){
-				speed[1]=-0.5;
+			if(wspeed[1]<-0.5){
+				wspeed[1]=-0.5;
 			}
 			printw("%c pressed", chValue); // Ausgabe: char
-			printw("\nNew speed: (left) %f (right) %f", speed[0], speed[1]);
-			sigprocmask(SIG_BLOCK, & KeyboardControl::myinter->mask, nullptr);
+			printw("\nNew speed: (left) %f (right) %f", wspeed[0], wspeed[1]);
+
 		}
-		else{
-		sigprocmask(SIG_BLOCK, & KeyboardControl::myinter->mask, nullptr);}
 	}
 
-	while(speed[0]!=0 && speed[1]!=0){
-		printw("\nStopping robot");
-		KeyboardControl::adjustspeed(speed, 'b');
+	while(isspeed[0]!=0 && isspeed[1]!=0){
+		// stopping robot
+		KeyboardControl::adjustspeed(wspeed, 'b');
 	}
 	printw("\nRobot stopped, ending keyboard control");
 	clear();
 	endwin();
-	//sigprocmask(SIG_BLOCK, & KeyboardControl::myinter->mask, nullptr);
+	sigprocmask(SIG_BLOCK, & KeyboardControl::myinter.mask, nullptr);
 }
 
 void KeyboardControl::Step(){
-	isspeed=KeyboardControl::myinter->GetInput(); 	//is speed
+	isspeed=KeyboardControl::myinter.GetInput(); 	//is speed
 	double u[2];			// output signal
 	double ref=1500;	//null value of the signal
 	//double* wspeed;
-	KeyboardControl::Communicate(wspeed);
+	// KeyboardControl::Communicate();
 	KeyboardControl::rcon.CalculateU(wspeed[0], isspeed[0]);
 	KeyboardControl::lcon.CalculateU(wspeed[1], isspeed[1]);
 	u[0]=KeyboardControl::rcon.GetU();
@@ -127,9 +126,8 @@ void KeyboardControl::Step(){
 		KeyboardControl::shspeed[i]=2000;
 	}
 	}	//end for loop
-	cout<<"Sys: "<<shspeed[0]<<"; "<<shspeed[1]<<endl;
-	printw("\nSpeeds: %f %f", KeyboardControl::shspeed[0], KeyboardControl::shspeed[1]);
-	KeyboardControl::myinter->SetOutputs(KeyboardControl::shspeed);
+	// printw("\nSpeeds: %f %f", KeyboardControl::shspeed[0], KeyboardControl::shspeed[1]);
+	KeyboardControl::myinter.SetOutputs(KeyboardControl::shspeed);
 }
 
 void KeyboardControl::transferFunction(){

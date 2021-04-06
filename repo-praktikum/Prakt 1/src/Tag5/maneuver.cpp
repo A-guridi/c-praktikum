@@ -95,56 +95,62 @@ void Maneuver::Proceed(){
 void Maneuver::CalcManeuverSpeed(double x, double y, double w){
 	double xsoll=iter->dX;
 	double ysoll=iter->dY;
-	dPosDifference=sqrt((xsoll-x)*(xsoll-x)+(ysoll-y)*(ysoll-y));
-	if (dPosDifference>0.02){
-		if(iter==CoordList.end()){
-			adWishSpeed[0]=0;
-			adWishSpeed[1]=0;
-			Maneuver::Stop();
-			return;
+	double dis=((xsoll-x)*(xsoll-x)+(ysoll-y)*(ysoll-y));
+	dPosDifference=sqrt(dis);
+	if (dPosDifference<=0.02){
+		iter++; }
+	if(iter==CoordList.end()){
+		adWishSpeed[0]=0;
+		adWishSpeed[1]=0;
+		Maneuver::Stop();
+		return;
+	}
+	double angledif=atan2((ysoll-y), (xsoll-x))-w; //difference between should angle and real angle
+	//limit angle to [-pi, pi]
+	if (angledif>M_PI){
+		angledif-=2*M_PI;
+	}
+	else if(angledif<= - M_PI){
+		angledif+=2*M_PI;
+	}
+	// create the rotation part
+	double dRot=angledif*2;
+	if(dRot>0.5){
+		dRot=0.5;
+	}
+	else if(dRot<-0.5){
+		dRot=-0.5;
+	}
+	// translation part
+	double dTra=iter->dV;
+	if(dTra*dRot>0.0){
+		if(dTra+dRot>dMaxSpeed){
+			dTra=dMaxSpeed-dRot;
 		}
-		//else
-		double angledif=atan2(ysoll-y, xsoll-x)-w; //difference between should angle and real angle
-		//limit angle to [-pi, pi]
-		if (angledif>M_PI){
-			angledif-=2*M_PI;
+		else if(dTra+dRot< -dMaxSpeed){
+			dTra=-dMaxSpeed-dRot;
 		}
-		else if(angledif<= - M_PI){
-			angledif+=2*M_PI;
+	}
+	else{	//dTra*dRot<0
+		if(dTra-dRot>dMaxSpeed){
+			dTra=dMaxSpeed+dRot;
 		}
-		// create the rotation part
-		double dRot=angledif*2;
-		if(dRot>0.5){
-			dRot=0.5;
+		else if(dTra-dRot< -dMaxSpeed){
+			dTra= -dMaxSpeed+dRot;
 		}
-		else if(dRot<-0.5){
-			dRot=-0.5;
-		}
-		// translation part
-		double dTra=iter->dV;
-		if(dTra*dRot>0){
-			if(dTra+dRot>dMaxSpeed){
-				dTra=dMaxSpeed-dRot;
-			}
-			else if(dTra+dRot< -dMaxSpeed){
-				dTra=-dMaxSpeed-dRot;
-			}
-		}
-		else{	//dTra*dRot<0
-			if(dTra-dRot>dMaxSpeed){
-				dTra=dMaxSpeed+dRot;
-			}
-			else if(dTra-dRot< -dMaxSpeed){
-				dTra= -dMaxSpeed+dRot;
-			}
-		}
+	}
 		//addition of the two parts
-		adWishSpeed[0]=dTra+dRot;
-		adWishSpeed[1]=dTra-dRot;
+	adWishSpeed[0]=dTra+dRot;
+	adWishSpeed[1]=dTra-dRot;
+	for(int j=0;j<2;j++){
+		if(adWishSpeed[j]>0.5){
+			adWishSpeed[j]=0.5;
+		}
+		else if(adWishSpeed[j]< -0.5){
+			adWishSpeed[j]=-0-5;
+		}
 	}
-	else{	//the robot is in the position it should be
-		iter++;
-	}
+
 }
 
 double* Maneuver::GetManeuverSpeed(){

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "RobotControl.h"
 #include "posestimation.h"
 #include "maneuver.h"
 using namespace std;
@@ -149,6 +150,11 @@ int mancomparer(void)
 }
 
 int main(){
+	RobotControl control=RobotControl();
+	do{
 
+	control.Run();
+
+	}while(control.GetisActive());
 	return 0;
 }
